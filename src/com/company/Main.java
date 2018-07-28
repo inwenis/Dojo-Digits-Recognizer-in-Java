@@ -71,7 +71,7 @@ public class Main {
         } else {
             Integer diff1 = pointA[0] - pointB[0];
             Integer diff2 = pointA[1] - pointB[1];
-            return Math.sqrt(diff1 * diff1 + diff2 * diff2);
+            return Math.sqrt(Math.pow(diff1, 2) + Math.pow(diff2, 2));
         }
     }
 
