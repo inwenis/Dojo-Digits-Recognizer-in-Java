@@ -21,7 +21,7 @@ public class Main {
         for (Record record : validationRecords) {
             Integer recognizedDigit = recognize(record.Pixels, trainingRecords);
 //            System.out.println(recognizedDigit + " " + (recognizedDigit == record.Digit));
-            if(recognizedDigit == record.Digit) {
+            if(Objects.equals(recognizedDigit, record.Digit)) {
                 correctlyRecognized.add(record);
             } else {
                 wronglyRecognized.add(record);
