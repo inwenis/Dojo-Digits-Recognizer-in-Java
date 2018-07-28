@@ -65,8 +65,14 @@ public class Main {
     }
 
     public static double distance(Integer[] pointA, Integer[] pointB) {
-        Integer diff = pointA[0] - pointB[0];
-        return  Math.sqrt(diff * diff);
+        if(pointA.length == 1) {
+            Integer diff = pointA[0] - pointB[0];
+            return Math.sqrt(diff * diff);
+        } else {
+            Integer diff1 = pointA[0] - pointB[0];
+            Integer diff2 = pointA[1] - pointB[1];
+            return Math.sqrt(diff1 * diff1 + diff2 * diff2);
+        }
     }
 
     static class FruitInfo {
