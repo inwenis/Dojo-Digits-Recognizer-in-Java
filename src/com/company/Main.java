@@ -42,11 +42,10 @@ public class Main {
     private static List<Record> getRecordsFromFile(String fileName) throws IOException {
         Path trainingsamplePath = Paths.get(fileName);
         List<String> lines = Files.readAllLines(trainingsamplePath);
-        List<Record> records = lines.stream()
-                .map(x -> x.split(","))
-                .collect(Collectors.toList())
+        List<Record> records = lines
                 .subList(1, lines.size()) // removes header row
                 .stream()
+                .map(x -> x.split(","))
                 .map(x -> Arrays.stream(x)
                         .map(y -> Integer.parseInt(y))
                         .collect(Collectors.toList()))
