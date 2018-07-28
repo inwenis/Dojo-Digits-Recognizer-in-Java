@@ -12,14 +12,29 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        fruitsTest();
+        //fruitsTest();
         List<Record> trainingRecords = getRecordsFromFile("trainingsample.csv");
         List<Record> validationRecords = getRecordsFromFile("validationsample.csv");
 
+        List<Record> correctlyRecognized = new ArrayList<>();
+        List<Record> wronglyRecognized = new ArrayList<>();
         for (Record record : validationRecords) {
             Integer recognizedDigit = recognize(record.Pixels, trainingRecords);
-            System.out.println(recognizedDigit + " " + (recognizedDigit == record.Digit));
+//            System.out.println(recognizedDigit + " " + (recognizedDigit == record.Digit));
+            if(recognizedDigit == record.Digit) {
+                correctlyRecognized.add(record);
+            } else {
+                wronglyRecognized.add(record);
+            }
         }
+
+        System.out.println("correct:");
+        double correctPercentage = (double) correctlyRecognized.size() / validationRecords.size();
+        System.out.println(correctlyRecognized.size() + "/" + validationRecords.size() + " = " + correctPercentage);
+
+        System.out.println("wrong:");
+        double wrongPercentage = (double) wronglyRecognized.size() / validationRecords.size();
+        System.out.println(wronglyRecognized.size() + "/" + validationRecords.size() + " = " + wrongPercentage);
 
         System.out.println("done");
     }
