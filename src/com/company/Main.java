@@ -68,10 +68,17 @@ public class Main {
         if(pointA.length == 1) {
             Integer diff = pointA[0] - pointB[0];
             return Math.sqrt(diff * diff);
-        } else {
+        } else if(pointA.length == 2) {
             Integer diff1 = pointA[0] - pointB[0];
             Integer diff2 = pointA[1] - pointB[1];
             return Math.sqrt(Math.pow(diff1, 2) + Math.pow(diff2, 2));
+        } else {
+            int sum = 0;
+            for (int i = 0; i < pointA.length; i++) {
+                Integer diff = pointA[i] - pointB[i];
+                sum += Math.pow(diff, 2);
+            }
+            return Math.sqrt(sum);
         }
     }
 

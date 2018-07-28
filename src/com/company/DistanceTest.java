@@ -25,4 +25,18 @@ public class DistanceTest {
         double distance = Main.distance(pointA, pointB);
         Assert.assertEquals(12.72, distance, 0.01);
     }
+
+    @Test
+    public void test_computing_distance_between_3D_points() {
+        Integer[] pointA = new Integer[3];
+        pointA[0] = 1;
+        pointA[1] = 1;
+        pointA[2] = 1;
+        Integer[] pointB = new Integer[3];
+        pointB[0] = 10;
+        pointB[1] = 10;
+        pointB[2] = 10;
+        double distance = Main.distance(pointA, pointB);
+        Assert.assertEquals(15.58, distance, 0.01);
+    }
 }
