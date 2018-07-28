@@ -64,6 +64,11 @@ public class Main {
                 .forEach(x -> System.out.println(x.Name + " eat it: " + x.DoILikeThisFruit));
     }
 
+    public static double distance(Integer[] pointA, Integer[] pointB) {
+        Integer diff = pointA[0] - pointB[0];
+        return  Math.sqrt(diff * diff);
+    }
+
     static class FruitInfo {
         public String Name;
         public boolean DoILikeThisFruit;
