@@ -12,12 +12,21 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        System.out.println("hello world");
-        Path trainingsamplePath = Paths.get("trainingsample.csv");
-        List<String> lines = Files.readAllLines(trainingsamplePath);
-//        String[] splittedSampleRow = lines.get(123).split(",");
-//        for (String column : splittedSampleRow) { System.out.println(column); }
         fruitsTest();
+        List<Record> trainingRecords = getRecordsFromFile("trainingsample.csv");
+        List<Record> validationRecords = getRecordsFromFile("validationsample.csv");
+
+        for (Record record : validationRecords) {
+            Integer recognizedDigit = recognize(record.Pixels, trainingRecords);
+            System.out.println(recognizedDigit + " " + (recognizedDigit == record.Digit));
+        }
+
+        System.out.println("done");
+    }
+
+    private static List<Record> getRecordsFromFile(String fileName) throws IOException {
+        Path trainingsamplePath = Paths.get(fileName);
+        List<String> lines = Files.readAllLines(trainingsamplePath);
         List<Record> records = lines.stream()
                 .map(x -> x.split(","))
                 .collect(Collectors.toList())
@@ -33,8 +42,7 @@ public class Main {
                     return record;
                 })
                 .collect(Collectors.toList());
-
-        System.out.println("done");
+        return records;
     }
 
     private static void fruitsTest() {
