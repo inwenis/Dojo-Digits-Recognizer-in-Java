@@ -1,12 +1,12 @@
 package com.company;
 
+import javafx.util.Pair;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -62,6 +62,17 @@ public class Main {
                     return fruitInfo;
                 })
                 .forEach(x -> System.out.println(x.Name + " eat it: " + x.DoILikeThisFruit));
+    }
+
+    public static Integer recognize(Integer[] toBeRecognized, List<Record> sampleRecords) {
+        Pair bestMatch = sampleRecords.stream()
+                .map(x -> new Pair(x.Digit, distance(toBeRecognized, x.Pixels)))
+                .sorted(Comparator.comparingDouble(x -> (double) x.getValue()))
+                .findFirst()
+                .get();
+
+        Object bestMatchingDigit = bestMatch.getKey();
+        return (Integer) bestMatchingDigit;
     }
 
     public static double distance(Integer[] pointA, Integer[] pointB) {
